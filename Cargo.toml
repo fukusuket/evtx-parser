@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 
 evtx = "0.7.2"
+clap = {version = "3.2.11", features = ["derive"] }
