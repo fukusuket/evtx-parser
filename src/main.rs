@@ -32,6 +32,7 @@ fn write_to_csv(path: &PathBuf) {
     let mut wtr = WriterBuilder::new()
         .quote_style(QuoteStyle::Always)
         .from_writer(BufWriter::new(file));
+    let _ = wtr.write_record(["event_record_id", "timestamp", "data"]);
     for record in parser.records_json_value() {
         match record {
             Ok(r) => {
