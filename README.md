@@ -11,12 +11,15 @@ OPTIONS:
     -d, --dir <DIR>    target evtx dir path
     -h, --help         Print help information
 ```
-## How to use
-
+## How to use(from source code)
 
 1. git clone https://github.com/fukusuket/evtx-parser.git
 2. cd evtx-parser
 3. cargo run -- -d ./samples
+
+## How to use(release binary)
+
+1. ./evtx-parser -d ./sample
 
 then output evtx converted csv files to ./target directory.
 
