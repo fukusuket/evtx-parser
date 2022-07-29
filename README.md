@@ -11,20 +11,22 @@ OPTIONS:
     -d, --dir <DIR>    target evtx dir path
     -h, --help         Print help information
 ```
+## How to use([from release](https://github.com/fukusuket/evtx-parser/releases))
+
+1. Download zip [from release page](https://github.com/fukusuket/evtx-parser/releases), and unzip.
+2. ./evtx-parser -d ./sample
+
+then output evtx converted csv files to ./target directory.
+
 ## How to use(from source)
 
-1. git clone https://github.com/fukusuket/evtx-parser.git
-2. cd evtx-parser
-3. cargo run -- -d ./samples
+1. 
+2. git clone https://github.com/fukusuket/evtx-parser.git
+3. cd evtx-parser
+4. cargo run -- -d ./samples
 
 - You must have c++ build tool installed as below(on windows).
   - https://docs.microsoft.com/ja-jp/windows/dev-environment/rust/setup
-
-## How to use([from release](https://github.com/fukusuket/evtx-parser/releases))
-
-1. ./evtx-parser -d ./sample
-
-then output evtx converted csv files to ./target directory.
 
 ## Input
 
