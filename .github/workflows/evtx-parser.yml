@@ -25,6 +25,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - run: git config --global http.postBuffer 157286400
+      - name: Install musl tools
+        if: matrix.target == 'x86_64-unknown-linux-musl'
+        run: |
+          sudo apt install -qq -y musl-tools --no-install-recommends
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
@@ -32,10 +36,6 @@ jobs:
           toolchain: stable
           target: ${{ matrix.target }}
           override: true
-      - name: test
-        uses: actions-rs/cargo@v1
-        with:
-          command: test
       - uses: actions-rs/cargo@v1
         with:
           command: build
