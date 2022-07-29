@@ -20,6 +20,7 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
+      - run: git config --global http.postBuffer 157286400
       - uses: actions-rs/cargo@v1
         with:
           command: build --release
