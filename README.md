@@ -21,12 +21,11 @@ then output evtx converted csv files to ./target directory.
 ## How to use(from source)
 
 1. [Install Rust.](https://www.rust-lang.org/tools/install)
+   - [You need c++ build tool(on windows)](https://docs.microsoft.com/ja-jp/windows/dev-environment/rust/setup).
 2. git clone https://github.com/fukusuket/evtx-parser.git
 3. cd evtx-parser
 4. cargo run -- -d ./samples
 
-- You must have c++ build tool installed as below(on windows).
-  - https://docs.microsoft.com/ja-jp/windows/dev-environment/rust/setup
 
 ## Input
 
