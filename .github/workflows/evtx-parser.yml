@@ -3,24 +3,15 @@ name: Build
 
 on:
   push:
-    branches: [main]
+    tags:
+      - *
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
+    name: release
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, windows-2019, macos-12]
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@master
-      - name: Compile
-        id: compile
-        uses: rust-build/rust-build.action@v1.3.2
-        with:
-          RUSTTARGET: x86_64-unknown-linux-musl
-          UPLOAD_MODE: none
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: Binary
-          path: |
-            ${{ steps.compile.outputs.BUILT_ARCHIVE }}
-            ${{ steps.compile.outputs.BUILT_CHECKSUM }}
+      - run: cargo build --release
