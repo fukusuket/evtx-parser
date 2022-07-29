@@ -20,7 +20,7 @@ then output evtx converted csv files to ./target directory.
 
 ## How to use(from source)
 
-1. 
+1. [Install Rust.](https://www.rust-lang.org/tools/install)
 2. git clone https://github.com/fukusuket/evtx-parser.git
 3. cd evtx-parser
 4. cargo run -- -d ./samples
