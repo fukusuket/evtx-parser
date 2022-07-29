@@ -39,23 +39,23 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --release --target=${{ matrix.target }}
+          args: --release
       - name: Package for linux-musl
         if: matrix.target == 'x86_64-unknown-linux-musl'
         run: |
-          zip --junk-paths rc-${{ matrix.target }} target/${{ matrix.target }}/release/rc
+          zip --junk-paths ${{ matrix.target }} target/release/evtx-parser
       - name: Package for windows
         if: matrix.target == 'x86_64-pc-windows-msvc'
         run: |
-          powershell Compress-Archive -Path target/${{ matrix.target }}/release/rc.exe -DestinationPath rc-${{ matrix.target }}.zip
+          powershell Compress-Archive -Path target/release/evtx-parser.exe -DestinationPath ${{ matrix.target }}.zip
       - name: Package for macOS
         if: matrix.target == 'x86_64-apple-darwin'
         run: |
-          zip --junk-paths rc-${{ matrix.target }} target/${{ matrix.target }}/release/rc
+          zip --junk-paths ${{ matrix.target }} target/release/evtx-parser
       - uses: actions/upload-artifact@v2
         with:
           name: build-${{ matrix.target }}
-          path: rc-${{ matrix.target }}.zip
+          path: ${{ matrix.target }}.zip
 
   create-release:
     needs: [build]
