@@ -11,13 +11,16 @@ OPTIONS:
     -d, --dir <DIR>    target evtx dir path
     -h, --help         Print help information
 ```
-## How to use(from source code)
+## How to use(from source)
 
 1. git clone https://github.com/fukusuket/evtx-parser.git
 2. cd evtx-parser
 3. cargo run -- -d ./samples
 
-## How to use(release binary)
+- You must have c++ build tool installed as below(on windows).
+  - https://docs.microsoft.com/ja-jp/windows/dev-environment/rust/setup
+
+## How to use([from release](https://github.com/fukusuket/evtx-parser/releases))
 
 1. ./evtx-parser -d ./sample
 
