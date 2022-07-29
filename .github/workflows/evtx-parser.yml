@@ -14,13 +14,13 @@ jobs:
         os: [ubuntu-20.04, windows-2019, macos-12]
     runs-on: ${{ matrix.os }}
     steps:
+      - run: git config --global http.postBuffer 157286400
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
           toolchain: stable
           override: true
-      - run: git config --global http.postBuffer 157286400
       - uses: actions-rs/cargo@v1
         with:
           command: build --release
