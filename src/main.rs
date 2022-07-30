@@ -9,28 +9,28 @@ use std::path::PathBuf;
 #[derive(Parser, Debug)]
 #[clap(long_about = None)]
 struct Args {
-    /// target evtx dir path.
+    /// target evtx directory path.
     #[clap(short, long, value_parser)]
-    dir: PathBuf,
+    evtx_dir: PathBuf,
 
-    /// csv output dir path.
+    /// csv output directory path.
     #[clap(short, long, value_parser)]
-    out: PathBuf,
+    output_dir: PathBuf,
 
 }
 
 fn main() {
     let args: Args  = Args::parse();
-    for entry in fs::read_dir(args.dir).expect("failed to open dir") {
+    for entry in fs::read_dir(args.evtx_dir).expect("failed to open dir") {
         let path = entry.unwrap().path();
-        write_to_csv(&path, &args.out);
+        write_to_csv(&path, &args.output_dir);
     }
 }
 
 fn write_to_csv(path: &PathBuf, outdir: &PathBuf) {
     let name = path.file_name().unwrap();
     if !outdir.exists() {
-        fs::create_dir(outdir).expect("failed to create output dir.");
+        fs::create_dir(outdir).expect("failed to create output directory.");
     }
     let mut out = outdir.join(PathBuf::from(name));
     out.set_extension("csv");

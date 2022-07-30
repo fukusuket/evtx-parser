@@ -5,17 +5,18 @@
 ## Usage
 ```
 USAGE:
-    evtx-parser --dir <DIR> --out <OUT>
+    evtx-parser --evtx-dir <EVTX_DIR> --output-dir <OUTPUT_DIR>
 
 OPTIONS:
-    -d, --dir <DIR>    target evtx dir path
-    -h, --help         Print help information
-    -o, --out <OUT>    csv output dir path
+    -e, --evtx-dir <EVTX_DIR>        target evtx directory path
+    -h, --help                       Print help information
+    -o, --output-dir <OUTPUT_DIR>    csv output directory path
+
 ```
 ## How to use([from release](https://github.com/fukusuket/evtx-parser/releases))
 
 1. Download zip [from release page](https://github.com/fukusuket/evtx-parser/releases), and unzip.
-2. ./evtx-parser -d ./sample
+2. ./evtx-parser -e C:\Windows\System32\winevt\Logs -o .C:\tmp
 
 then output evtx converted csv files to ./target directory.
 
@@ -25,7 +26,7 @@ then output evtx converted csv files to ./target directory.
    - [You need c++ build tool(on windows)](https://docs.microsoft.com/ja-jp/windows/dev-environment/rust/setup).
 2. git clone https://github.com/fukusuket/evtx-parser.git
 3. cd evtx-parser
-4. cargo run -- -d ./samples
+4. cargo run -- -e C:\Windows\System32\winevt\Logs -o C:\tmp
 
 
 ## Input
