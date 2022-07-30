@@ -1,4 +1,4 @@
-use clap::Parser;
+use clap::{arg, Parser};
 use csv::{QuoteStyle, WriterBuilder};
 use evtx::EvtxParser;
 use std::fs;
@@ -13,19 +13,26 @@ struct Args {
     #[clap(short, long, value_parser)]
     dir: PathBuf,
 
+    /// csv output dir path.
+    #[clap(short, long, value_parser)]
+    out: PathBuf,
+
 }
 
 fn main() {
     let args: Args  = Args::parse();
     for entry in fs::read_dir(args.dir).expect("failed to open dir") {
         let path = entry.unwrap().path();
-        write_to_csv(&path);
+        write_to_csv(&path, &args.out);
     }
 }
 
-fn write_to_csv(path: &PathBuf) {
+fn write_to_csv(path: &PathBuf, outdir: &PathBuf) {
     let name = path.file_name().unwrap();
-    let mut out = PathBuf::from("./target").join(PathBuf::from(name));
+    if !outdir.exists() {
+        fs::create_dir(outdir).expect("failed to create output dir.");
+    }
+    let mut out = outdir.join(PathBuf::from(name));
     out.set_extension("csv");
     let file = File::create(out).expect("failed to create output csv file.");
     let mut parser = EvtxParser::from_path(path).unwrap();
