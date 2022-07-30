@@ -5,11 +5,12 @@
 ## Usage
 ```
 USAGE:
-    evtx-parser --dir <DIR>
+    evtx-parser --dir <DIR> --out <OUT>
 
 OPTIONS:
     -d, --dir <DIR>    target evtx dir path
     -h, --help         Print help information
+    -o, --out <OUT>    csv output dir path
 ```
 ## How to use([from release](https://github.com/fukusuket/evtx-parser/releases))
 
