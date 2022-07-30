@@ -16,17 +16,17 @@ OPTIONS:
 ## How to use([from release](https://github.com/fukusuket/evtx-parser/releases))
 
 1. Download zip [from release page](https://github.com/fukusuket/evtx-parser/releases), and unzip.
-2. ./evtx-parser -e C:\Windows\System32\winevt\Logs -o .C:\tmp
+2. >evtx-parser.exe -e C:\Windows\System32\winevt\Logs -o C:\tmp
 
-then output evtx converted csv files to ./target directory.
+then output evtx converted csv files to C:\tmp.
 
 ## How to use(from source)
 
 1. [Install Rust.](https://www.rust-lang.org/tools/install)
    - [You need c++ build tool(on windows)](https://docs.microsoft.com/ja-jp/windows/dev-environment/rust/setup).
-2. git clone https://github.com/fukusuket/evtx-parser.git
-3. cd evtx-parser
-4. cargo run -- -e C:\Windows\System32\winevt\Logs -o C:\tmp
+2. >git clone https://github.com/fukusuket/evtx-parser.git
+3. >cd evtx-parser
+4. >cargo run -- -e C:\Windows\System32\winevt\Logs -o C:\tmp
 
 
 ## Input
