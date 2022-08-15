@@ -5,12 +5,26 @@
 ## Usage
 ```
 USAGE:
-    evtx-parser --evtx-dir <EVTX_DIR> --output-dir <OUTPUT_DIR>
+    evtx-parser [OPTIONS] --evtx-dir <EVTX_DIR> --output-dir <OUTPUT_DIR>
 
 OPTIONS:
-    -e, --evtx-dir <EVTX_DIR>        target evtx directory path
-    -h, --help                       Print help information
-    -o, --output-dir <OUTPUT_DIR>    csv output directory path
+    -e, --evtx-dir <EVTX_DIR>
+            target evtx directory path
+
+    -f, --first-time <FIRST_TIME>
+            First time of the event logs to parse (ex: "2022-04-01 00:00:00")
+
+    -h, --help
+            Print help information
+
+    -l, --last-time <LAST_TIME>
+            Last time of the event logs to parse (ex: "2022-04-30 00:00:00")
+
+    -o, --output-dir <OUTPUT_DIR>
+            CSV output directory path
+
+    -s, --search-keyword <SEARCH_KEYWORD>
+            Search keyword to grep log
 
 ```
 ## How to use([from release](https://github.com/fukusuket/evtx-parser/releases))
