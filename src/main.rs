@@ -31,6 +31,11 @@ struct Args {
     /// Search keyword to grep log.
     #[clap(short, long, value_parser)]
     search_keyword: Option<String>,
+
+    /// Output column convert option.( raw or column )
+    #[clap(short, long, value_parser, default_value_t = String::from("raw"))]
+    column_option: String,
+
 }
 
 fn main() {
@@ -55,7 +60,7 @@ fn main() {
         };
 
         let filtered_records = filter_records(&mut parser, &first_time, &last_time, keyword);
-        write_to_csv(&path, &args.output_dir, &filtered_records);
+        write_to_csv(&path, &args.output_dir, &filtered_records, &args.column_option);
     }
 }
 
@@ -69,7 +74,7 @@ fn filter_records(parser: &mut EvtxParser<File>, first: &DateTime<Utc>, last: &D
     records
 }
 
-fn write_to_csv(path: &PathBuf, outdir: &PathBuf, records: &Vec<SerializedEvtxRecord<Value>>) {
+fn write_to_csv(path: &PathBuf, outdir: &PathBuf, records: &Vec<SerializedEvtxRecord<Value>>, column_option: &String) {
     let name = path.file_name().unwrap();
     if !outdir.exists() {
         fs::create_dir(outdir).expect("failed to create output directory.");
@@ -80,13 +85,27 @@ fn write_to_csv(path: &PathBuf, outdir: &PathBuf, records: &Vec<SerializedEvtxRe
     let mut wtr = WriterBuilder::new()
         .quote_style(QuoteStyle::Always)
         .from_writer(BufWriter::new(file));
-    let _ = wtr.write_record(["event_record_id", "timestamp", "data"]);
-    for r in records {
-        let _ = wtr.write_record([
-            r.event_record_id.to_string(),
-            r.timestamp.to_string(),
-            r.data.to_string(),
-        ]);
+    if column_option == "raw" {
+        let _ = wtr.write_record(["event_record_id", "timestamp", "data"]);
+        for r in records {
+            let _ = wtr.write_record([
+                r.event_record_id.to_string(),
+                r.timestamp.to_string(),
+                r.data.to_string(),
+            ]);
+        }
+    } else {
+        let _ = wtr.write_record(["event_record_id", "timestamp", "channel", "eventid", "rowdata", "rowdata"]);
+        for r in records {
+            let _ = wtr.write_record([
+                r.event_record_id.to_string(),
+                r.timestamp.to_string(),
+                r.data["Event"]["System"]["Channel"].to_string(),
+                r.data["Event"]["System"]["EventID"].to_string(),
+                r.data["Event"]["EventData"].to_string(),
+                r.data["Event"]["System"].to_string(),
+            ]);
+        }
     }
     println!("converting {:?} to csv done.", path);
 }
