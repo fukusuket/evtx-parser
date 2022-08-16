@@ -1,11 +1,11 @@
 [package]
 name = "evtx-parser"
-version = "0.1.0"
+version = "0.0.5"
 edition = "2021"
 
 [dependencies]
 evtx = "0.7.2"
-clap = {version = "3.2.11", features = ["derive"] }
+clap = { version = "3.2.11", features = ["derive"] }
 csv = "1.1"
 serde_json = "1.0.83"
 chrono = "0.4"

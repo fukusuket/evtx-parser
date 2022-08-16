@@ -1,5 +1,5 @@
 use chrono::{DateTime, TimeZone, Utc};
-use clap::Parser;
+use clap::{AppSettings, Parser};
 use csv::{QuoteStyle, WriterBuilder};
 use evtx::{EvtxParser, SerializedEvtxRecord};
 use serde_json::Value;
@@ -10,6 +10,7 @@ use std::path::PathBuf;
 
 #[derive(Parser, Debug)]
 #[clap(long_about = None)]
+#[clap(global_setting(AppSettings::DeriveDisplayOrder))]
 struct Args {
     /// target evtx directory path.
     #[clap(short, long, value_parser)]

@@ -413,7 +413,7 @@ dependencies = [
 
 [[package]]
 name = "evtx-parser"
-version = "0.1.0"
+version = "0.0.5"
 dependencies = [
  "chrono",
  "clap 3.2.11",
